@@ -1,2 +1,2 @@
-# yangiliklarSayti
-Yangiliklar sayti, full stack
+<h4>Yangililar web sayti </h4>
+<p>laravel yordamida ishlab chiqildi</p>
