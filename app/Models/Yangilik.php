@@ -17,7 +17,4 @@ class Yangilik extends Model
         'category_id',
         'region_id',
     ];
-
-    
-
 }

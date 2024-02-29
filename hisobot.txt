@@ -11,11 +11,9 @@ qilingan ishlar
 
     yangilik:
         create
-        update
         delete
     
     shu amallar tayyorlandi
 
 qilinishi kerak bo'lgan ishlar
-admin panel qo'shish
-data basani layoutga joylashtirish
+        

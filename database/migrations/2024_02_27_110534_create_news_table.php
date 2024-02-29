@@ -13,18 +13,16 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categorys');
-            $table->unsignedBigInteger('region_id');
-            $table->foreign('region_id')->references('id')->on('regions');
+            $table->string('user_id');
             $table->string('title');
             $table->string('photo');
             $table->text('message');
+            $table->string('category_id');
+            $table->string('region_id');
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      */
