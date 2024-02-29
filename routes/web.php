@@ -1,11 +1,18 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\RegionController;
-use App\Http\Controllers\YangilikController;
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
 Route::get('/', function () {
     return view('home');
@@ -20,9 +27,7 @@ Route::get('/single-news', function () {
     return view('single-news');
 })->name('single-news');
 
-
 // Admin panel
-
 Route::get('/admin', function () {
     return view('admin.index');
 })->name('admin-home');
@@ -42,3 +47,15 @@ Route::post('admin/news-add',[YangilikController::class,'store'])->name('admin-n
 Route::get('admin/news-add/edit',[YangilikController::class,'show'])->name('admin-news-edit');
 Route::post('admin/news-add/edit',[YangilikController::class,'edit'])->name('admin-news-edit');
 
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
