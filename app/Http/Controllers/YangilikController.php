@@ -27,28 +27,40 @@ class YangilikController extends Controller
     
     public function store(Request $request){
         $path = $request->file('image')->store('images');
-        $category_name = Category::find($request->category);
-        $region_name = Region::find($request->region);
 
         $Yangilik = new Yangilik;
         $Yangilik->photo = $path;
+        $Yangilik->user_id = 3;
         $Yangilik->title = $request->title;
         $Yangilik->message = $request->message;
-        $Yangilik->category_id = $category_name->name;
-        $Yangilik->region_id = $region_name->name;
+        $Yangilik->category_id = $request->category;
+        $Yangilik->region_id =$request->region;
         $Yangilik->save();
-        return redirect()->back()->with('status',$Yangilik->name.' qo\'shildi');
+        return redirect()->back()->with('status','Yangilik qo\'shildi');
     }
     public function show(Request $request){
-        $yangilik = Yangilik::find($request->id);
+        $news = Yangilik::find($request->id);
         // dd($yangilik);
-        return view('admin.edited',['news'=>$yangilik,'categorys'=>Category::all(),'regions'=>Region::all()]);
+        return view('admin.edited',['news'=>$news,'categorys'=>Category::all(),'regions'=>Region::all()]);
     }
     public function edit(Request $request){
-        $Yangilik = Yangilik::find($request->id);
-        $old_name = $Yangilik->name;
-        $Yangilik->name = $request->name;
+        // dd($request);
+        
+        $Yangilik = Yangilik::find($request->news_id);
+        
+        if($request->file('image')){
+            $path = $request->file('image')->store('images');
+            // delete file 
+            Storage::delete($Yangilik->photo);
+        }
+
+        $Yangilik->title = $request->title;
+        $Yangilik->photo = $path ?? $Yangilik->photo;
+        $Yangilik->category_id = $request->category;
+        $Yangilik->region_id = $request->region;
+        $Yangilik->message = $request->message;
+        // dd($Yangilik);
         $Yangilik->update();
-        return redirect()->route('admin-Yangilik')->with('status',$old_name.' '.$Yangilik->name.'ga  o\'zgartirildi');
+        return redirect()->route('admin-news')->with('status','Malumotlar yangilandi');
     }
 }

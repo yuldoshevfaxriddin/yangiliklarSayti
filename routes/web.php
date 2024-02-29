@@ -41,3 +41,4 @@ Route::get('admin/news-add',[YangilikController::class,'index'])->name('admin-ne
 Route::post('admin/news-add',[YangilikController::class,'store'])->name('admin-news');
 Route::get('admin/news-add/edit',[YangilikController::class,'show'])->name('admin-news-edit');
 Route::post('admin/news-add/edit',[YangilikController::class,'edit'])->name('admin-news-edit');
+
