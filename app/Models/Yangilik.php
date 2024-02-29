@@ -10,6 +10,7 @@ class Yangilik extends Model
     use HasFactory;
     protected $table = 'news';
     protected $fillable = [
+        'user_id',
         'title',
         'photo',
         'message',

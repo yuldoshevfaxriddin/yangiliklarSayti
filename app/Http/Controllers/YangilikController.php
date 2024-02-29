@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Yangilik;
 use App\Models\Category;
@@ -16,7 +17,9 @@ class YangilikController extends Controller
         if($request->id !== null){
             $delete_Yangilik = Yangilik::find($request->id);
             $delete_Yangilik->delete();
-            // delete file
+            // delete file 
+            Storage::delete($delete_Yangilik->photo);
+
             return redirect()->back()->with('status',$delete_Yangilik->name.' o\'chirildi');
         }
         return view('admin.news-add',['news'=>$yangilik,'categorys'=>$categorys,'regions'=>$regions]);
@@ -37,8 +40,9 @@ class YangilikController extends Controller
         return redirect()->back()->with('status',$Yangilik->name.' qo\'shildi');
     }
     public function show(Request $request){
-        $Yangilik = Yangilik::find($request->id);
-        return view('admin.edited',['edit_form_name'=>'Yangilik ni o\'zgartirish','edit_adress'=>route('admin-Yangilik-edit'),'edit_type'=>'Yangilik','Yangilik'=>$Yangilik]);
+        $yangilik = Yangilik::find($request->id);
+        // dd($yangilik);
+        return view('admin.edited',['news'=>$yangilik,'categorys'=>Category::all(),'regions'=>Region::all()]);
     }
     public function edit(Request $request){
         $Yangilik = Yangilik::find($request->id);

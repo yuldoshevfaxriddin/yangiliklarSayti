@@ -1,0 +1,19 @@
+qilingan ishlar
+    category:
+        create
+        update
+        delete
+
+    region:
+        create
+        update
+        delete
+
+    yangilik:
+        create
+        delete
+    
+    shu amallar tayyorlandi
+
+qilinishi kerak bo'lgan ishlar
+        
