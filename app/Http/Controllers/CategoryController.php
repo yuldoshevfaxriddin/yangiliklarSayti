@@ -26,7 +26,7 @@ class CategoryController extends Controller
 
     public function show(Request $request){
         $category = Category::find($request->id);
-        return view('admin.edited',['edit_form_name'=>'category ni o\'zgartirish','edit_adress'=>route('admin-category-edit'),'edit_type'=>'category','region'=>$category]);
+        return view('admin.category-edited');
     }
     public function edit(Request $request){
         $category = Category::find($request->id);

@@ -1,18 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RegionController;
+use App\Http\Controllers\YangilikController;
 
 Route::get('/', function () {
     return view('home');
@@ -27,7 +20,9 @@ Route::get('/single-news', function () {
     return view('single-news');
 })->name('single-news');
 
+
 // Admin panel
+
 Route::get('/admin', function () {
     return view('admin.index');
 })->name('admin-home');
@@ -46,3 +41,4 @@ Route::get('admin/news-add',[YangilikController::class,'index'])->name('admin-ne
 Route::post('admin/news-add',[YangilikController::class,'store'])->name('admin-news');
 Route::get('admin/news-add/edit',[YangilikController::class,'show'])->name('admin-news-edit');
 Route::post('admin/news-add/edit',[YangilikController::class,'edit'])->name('admin-news-edit');
+

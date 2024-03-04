@@ -43,8 +43,8 @@
                         <td><img width="120px" src="{{ route('home').'/storage//'. $new->photo }}" alt="photo"></td>
                         <td>{{ $new->title }}</td>
                         <td>{{ $new->message }}</td>
-                        <td>{{ $new->category_id }}</td>
-                        <td>{{ $new->region_id }}</td>
+                        <td>{{ App\Models\Category::find($new->category_id)->name }}</td>
+                        <td>{{ App\Models\Region::find($new->region_id)->name }}</td>
                         <td>
                             <a href="{{ route('admin-news', ['id' => $new->id]) }}">Delete</a>
                             <a href="{{ route('admin-news-edit', ['id' => $new->id]) }}">Edit</a>

@@ -1,8 +1,7 @@
 @extends('admin.index')
 
 @section('content')
-    <h3>Yangilikni o'zgartirish</h3>
-    <img src="{{ route('home').'/storage//'.$news->photo}}" alt="photo">
+    <h3>Categoryani o'zgartirish</h3>
     <form action="{{ route('admin-news-edit') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="news_id" value="{{$news->id}}">
