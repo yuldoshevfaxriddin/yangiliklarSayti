@@ -26,10 +26,11 @@ class CategoryController extends Controller
 
     public function show(Request $request){
         $category = Category::find($request->id);
-        return view('admin.category-edited');
+        
+        return view('admin.category-edited',['category'=>$category]);
     }
     public function edit(Request $request){
-        $category = Category::find($request->id);
+        $category = Category::find($request->category_id);
         $old_name = $category->name;
         $category->name = $request->name;
         $category->update();

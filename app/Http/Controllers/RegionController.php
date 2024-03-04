@@ -25,10 +25,10 @@ class RegionController extends Controller
     }
     public function show(Request $request){
         $region = Region::find($request->id);
-        return view('admin.edited',['edit_form_name'=>'Region ni o\'zgartirish','edit_adress'=>route('admin-region-edit'),'edit_type'=>'Region','region'=>$region]);
+        return view('admin.region-edited',['region'=>$region]);
     }
     public function edit(Request $request){
-        $region = Region::find($request->id);
+        $region = Region::find($request->region_id);
         $old_name = $region->name;
         $region->name = $request->name;
         $region->update();
