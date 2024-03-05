@@ -6,18 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" />
     <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <link rel="shortcut icon" href="https://kun.uz/favicon.ico?v=1" />
-    <link rel="apple-touch-icon" sizes="180x180" href="https://kun.uz/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://kun.uz/favicon32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://kun.uz/favicon1616.png">
-    <link rel="mask-icon" href="https://kun.uz/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="alternate" type="application/rss+xml" title="RSS feed" href="https://kun.uz/rss" />
-    <meta name="author" content="Kun uz">
     <meta name="theme-color" content="#000">
     <meta name="msapplication-navbutton-color" content="#000">
     <meta name="apple-mobile-web-app-status-bar-style" content="#000">
-    <meta name="google-site-verification" content="XRKGT7ifCTNLGtaaVKVLrQLffNnYmSRe5A6BvwCfTy4" />
-    
+    <title>Yangiliklar sayti</title>
     @yield('meta-data')
     
     <style media="screen">
@@ -43,25 +35,16 @@
         <header class="page-header">
             <div class="container">
 
-                <div class="page-header__wrapper"><a href="https://kun.uz/" class="page-header__logo"><img
-                            src="https://kun.uz/assets/1a256e39/img/kun-uz-logo.svg" alt="Logo"></a>
+                <div class="page-header__wrapper">
                     <ul class="page-header__menu reset-list">
-                        <li class="page-header__menu-item"><a href="https://kun.uz/news/category/uzbekiston"
-                                class="menu-link">O‘zbekiston</a></li>
-                        <li class="page-header__menu-item"><a href="https://kun.uz/news/category/jahon"
-                                class="menu-link">Jahon</a></li>
-                        <li class="page-header__menu-item"><a href="https://kun.uz/news/category/iktisodiet"
-                                class="menu-link">Iqtisodiyot</a></li>
-                        <li class="page-header__menu-item"><a href="https://kun.uz/news/category/jamiyat"
-                                class="menu-link">Jamiyat</a></li>
-                        <li class="page-header__menu-item"><a href="https://kun.uz/news/category/tehnologia"
-                                class="menu-link">Fan-texnika</a></li>
-                        <li class="page-header__menu-item"><a href="https://kun.uz/news/category/sport"
-                                class="menu-link">Sport</a></li>
-                        <li class="page-header__menu-item"><a href="https://kun.uz/news/category/nuqtai-nazar"
-                                class="menu-link">Nuqtayi nazar</a></li>
-                        <li class="page-header__menu-item"><a href="https://kun.uz/news/audio/list"
-                                class="menu-link">Audio</a></li>
+                        @foreach (App\Models\Category::all() as $category)
+                        <li class="page-header__menu-item">
+                            <a href="{{route('category',$category)}}"
+                            class="menu-link">{{$category->name}}</a>
+                        </li>
+                            
+                        @endforeach
+
                     </ul>
                     <div class="page-header__search-block">
                         <form action="/news/search" method="get">
@@ -93,63 +76,33 @@
             </div>
         </header>
         
+        <div class="wrapper">
+            <main>
+                <div class="container mb-50">
+                    <div class="countries">
+                        <div class="countries-list">
+                            <div class="regions">Hududlar</div>
+                            <ul class="list">
+                                @foreach (App\Models\Region::all() as $region)
+                                <li><a href="{{route('region',$region)}}">{{$region->name}}</a></li>
+                                @endforeach
+
+                            </ul>
+                        </div>
+                    </div>
+
+
         @yield('content')
 
 
-        <footer class="page-footer">
 
-            <div class="page-footer__bottom">
-                <div class="footer-menu-list">
-                    <div class="container space-between">
-                        <ul class="footer-menu reset-list">
-                            <li class="footer-menu__item"><a href="https://kun.uz/page/about">Sayt haqida</a>
-                            </li>
-                            <li class="footer-menu__item"><a href="https://kun.uz/news/rss">RSS</a>
-                            </li>
-                            <li class="footer-menu__item"><a href="https://kun.uz/contact">Aloqa</a>
-                            </li>
-                            <li class="footer-menu__item"><a href="https://kun.uz/page/reklama">Reklama</a>
-                            </li>
-                            <li class="footer-menu__item"><a href="https://kun.uz/time/news">Kun mavzulari</a></li>
-                            <li class="footer-menu__item"><a href="https://kun.uz/our-team">Kun.uz jamoasi</a>
-                            </li>
-                        </ul><a class="d-flex" href="https://kun.uz/page/privacy-18"><img
-                                src="https://kun.uz/assets/1a256e39/img/18plus-v2.svg"></a>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <div class="container space-between">
-                        <div class="footer-text"> “KUN.UZ” saytida eʼlon qilingan materiallardan nusxa koʻchirish,
-                            tarqatish va boshqa shakllarda foydalanish faqat tahririyat yozma roziligi bilan amalga
-                            oshirilishi mumkin.<br />Guvohnoma: №0987. Berilgan sanasi: 22.06.2015-yil. Muassis: “WEB
-                            EXPERT” MCHJ. Tahririyat manzili: 100043, Toshkent shahri, K. Yormatov koʻchasi, 12-uy.
-                            Elektron manzil: info@kun.uz.<br />Saytda eʼlon qilinayotgan mualliflik maqolalarida
-                            keltirilgan fikrlar muallifga tegishli va ular Kun.uz tahririyati nuqtayi nazarini ifoda
-                            etmasligi mumkin.<br />Ⓣ - maqola va materiallarda qo‘yilgan mazkur belgi ularning tijorat
-                            va reklama huquqlari asosida eʼlon qilinganligini bildiradi. </div>
-                        <ul class="social-items reset-list">
-                            <div class="social-item"><a href="https://www.youtube.com/channel/UCVPst_iSyaVYpuOP4ogRhlw"
-                                    target="_blank"><img src="https://kun.uz/assets/1a256e39/img/social-youtube.svg"></a></div>
-                            <div class="social-item"><a href="https://telegram.me/kunuzofficial" target="_blank"><img
-                                        src="https://kun.uz/assets/1a256e39/img/social-telegram.svg"></a></div>
-                            <div class="social-item"><a href="https://www.facebook.com/kunuznews/" target="_blank"><img
-                                        src="https://kun.uz/assets/1a256e39/img/social-facebook.svg"></a></div>
-                            <div class="social-item"><a href="https://twitter.com/KunUzNews" target="_blank"><img
-                                        src="https://kun.uz/assets/1a256e39/img/social-twitter.svg"></a></div>
-                            <div class="social-item"><a href="https://www.instagram.com/kun.uz" target="_blank"><img
-                                        src="https://kun.uz/assets/1a256e39/img/social-instagram.svg"></a></div>
-                            <div class="social-item"><a href="https://kun.uz/news/rss" target="_blank"><img
-                                        src="https://kun.uz/assets/1a256e39/img/social-rss.svg"></a></div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer><a class="cd-top js-cd-top cd-top--fade-out" href="#0">Top</a>
-    </div>
+
+
+       </div>
     
     <script src="https://kun.uz/assets/fd2abdd1/jquery.min.js?v=1707575291"></script>
     <script src="https://kun.uz/assets/1a256e39/js/app.js?v=1707575291" version="1.1"></script>
-    <div id="adfox_165028636255075108"></div>
+
    
 </body>
 

@@ -7,25 +7,16 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\YangilikController;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
-Route::get('/category', function () {
-    return view('category');
-})->name('category');
-Route::get('/region', function () {
-    return view('region');
-})->name('region');
-Route::get('/single-news', function () {
-    return view('single-news');
-})->name('single-news');
-
+Route::get('/',[YangilikController::class,'home'] )->name('home');
+Route::get('/news/{new}',[YangilikController::class,'single'] )->name('single-news');
+Route::get('/category/{category}',[CategoryController::class,'filter'])->name('category');
+Route::get('/region/{region}',[CategoryController::class,'filter'])->name('region');
 
 // Admin panel
 
-Route::get('/admin', function () {
+Route::get('/admin',function(){
     return view('admin.index');
-})->name('admin-home');
+})->name('admin');
 
 Route::get('admin/category-add',[CategoryController::class,'index'])->name('admin-category');
 Route::post('admin/category-add',[CategoryController::class,'store'])->name('admin-category');

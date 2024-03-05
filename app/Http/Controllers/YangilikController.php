@@ -11,7 +11,8 @@ use App\Models\Region;
 class YangilikController extends Controller
 {
     public function index(Request $request){
-        $yangilik = Yangilik::all();
+        $yangilik = Yangilik::orderBy('id', 'DESC')->get();
+        // dd($yangilik);
         $categorys = Category::all();
         $regions = Region::all();
         if($request->id !== null){
@@ -25,6 +26,18 @@ class YangilikController extends Controller
         return view('admin.news-add',['news'=>$yangilik,'categorys'=>$categorys,'regions'=>$regions]);
     }
     
+    public function home(){
+        $news = Yangilik::orderBy('id', 'DESC')->get();
+        return view('home',['news'=>$news]);
+    }
+
+    public function single(Yangilik $new){
+        
+        $news = Yangilik::orderBy('id', 'DESC')->get();
+
+        return view('single-news',['news'=>$news,'new'=>$new]);
+    }
+
     public function store(Request $request){
         $path = $request->file('image')->store('images');
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Yangilik;
 
 class CategoryController extends Controller
 {
@@ -28,6 +29,11 @@ class CategoryController extends Controller
         $category = Category::find($request->id);
         
         return view('admin.category-edited',['category'=>$category]);
+    }
+    public function filter(Category $category){
+        // $news = Yangilik::where('category_id',$category->id)->get();
+        $news = Yangilik::orderBy('id', 'DESC')->get();
+        return view('home',['news'=>$news]);
     }
     public function edit(Request $request){
         $category = Category::find($request->category_id);

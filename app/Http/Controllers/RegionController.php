@@ -16,7 +16,12 @@ class RegionController extends Controller
         }
         return view('admin.region-add',['regions'=>$regions]);
     }
-    
+    public function filter(Region $region){
+        // $news = Yangilik::where('region_id',$region->id)->get();
+        $news = Yangilik::orderBy('id', 'DESC')->get();
+        return view('home',['news'=>$news]);
+    }
+
     public function store(Request $request){
         $region = new Region;
         $region->name = $request->region;
