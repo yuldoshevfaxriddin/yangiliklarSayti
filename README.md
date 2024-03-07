@@ -8,11 +8,13 @@ Migratsiyani sozlash:
 php artisan migrate
 ```
 <p>Loyihada seeder ham yozilgan, uni ishga tushirish</p>
+
 Seederni inshga tushirish:
 ```php
 php artisan db:seed
 ```
-Loyihani ishga tushirish
+
+Loyihani ishga tushirish:
 ```php
 php artisan serve
 ```
